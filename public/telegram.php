@@ -30,14 +30,14 @@
                 ];
             } else {
                 $messageUser = explode(' ', $messageUser);
-                $summa = $messageUser[0];
-                $currency = $messageUser[1];
+                $summaUser = floatval($messageUser[0]);
+                $currencyUser = strtoupper($messageUser[1]);
                 foreach ($resultApiPrivat as $item) {
-                    if ($item->{'ccy'} === $currency) {
-                        $newMoney = $summa * $item->{'buy'};
+                    if ($item->{'ccy'} == $currencyUser) {
+                        $newSumma = $summaUser * $item->{'buy'};
                         $responseParameters = [
                             'chat_id' => $update['message']['chat']['id'],
-                            'text' => $newMoney
+                            'text' => $newSumma
                         ];
                     }
                 }
