@@ -21,7 +21,7 @@
             if ($messageUser == '/start') {
                 $responseParameters = [
                     'chat_id' => $update['message']['chat']['id'],
-                    'text' => 'Вас приветствует бот для обмены валют, для того, чтобы узнать как работает бот, используете команду /help'
+                    'text' => 'Привет, ' . $update['message']['from']['username'] . '. Это бот для обмены валют, для того, чтобы узнать как работает бот, используете команду /help'
                 ];
             } elseif ($messageUser == '/help') {
                 $responseParameters = [
@@ -42,10 +42,10 @@
                     }
                 }
             }
-            file_get_contents($sendMessageUri . '?' . http_build_query($responseParameters));
-            $requestParameters['offset'] = $update['update_id'] + 1;
-            sleep(1);
         }
+        file_get_contents($sendMessageUri . '?' . http_build_query($responseParameters));
+        $requestParameters['offset'] = $update['update_id'] + 1;
+        sleep(1);
     }
 
 
